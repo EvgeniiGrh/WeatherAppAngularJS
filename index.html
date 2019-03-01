@@ -8,30 +8,17 @@
   </head>
   <body>
 
-    <div ng-controller="appController">
+    <div>
 
-      <custom-selector 
-        array='cities' 
-        change-selected-value='changeSelectedValue(newValue)'>
-      </custom-selector>
+      <custom-selector></custom-selector>
 
-      <button ng-click="addInfo()">ADD</button>
+      <weather-cards></weather-cards>
 
-      <ul ng-if="weatherList.length" >
-        <li ng-repeat="weather in weatherList">
-            <weather-card 
-              class="weather-card" 
-              title='weather.title' 
-              temp='weather.temp' 
-              delete-card="delete(title)">
-            </weather-card>
-        </li>
-      </ul>
     </div>
 
     <script src='js/app.module.js'></script>
     <script src='js/appController.js'></script>
     <script src='js/customSelector.directive.js'></script>
-    <script src='js/weatherCard.directive.js'></script>
+    <script src='js/weatherCards.directive.js'></script>
   </body>
 </html>

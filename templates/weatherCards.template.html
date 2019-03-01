@@ -1,0 +1,12 @@
+<ul ng-show="weatherList.length">
+  <li ng-repeat="weather in weatherList track by $index" class='weather-card'>
+    <div>
+      <h4>{{weather.title}}</h4>
+      <p>{{weather.temp}}</p>
+    </div>
+    
+    <button ng-click="delete(weather.title)">Delete</button>
+  </li>
+</ul>
+
+

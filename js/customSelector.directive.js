@@ -1,16 +1,15 @@
 angular.module('weatherApp')
-.directive('customSelector', function () {
+.directive('customSelector', function (cityDataService) {
   return {
     restrict: 'AE',
     scope: {
-      citiesArray: '=array',
-      changeSelectedValue: '&',
     },
     templateUrl: '../templates/customSelector.template.html',
     link: function(scope){
-      scope.changeOption = function (selectedItem){
-        scope.changeSelectedValue({newValue: selectedItem});
-      }
+      scope.citiesArray = cityDataService.getCities();
+
+      scope.addInfo = cityDataService.addWeatherForCity;
+      
     }, 
   };
 });

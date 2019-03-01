@@ -1,23 +1,26 @@
 angular.module('weatherApp')
-.controller('appController', ['$scope', '$http', function($scope, $http){
-  $scope.cities = ['Paris', 'Minsk', 'London', 'New York'];
+.service('cityDataService', function($http){
+  var cities = ['Paris', 'Minsk', 'London', 'New York'];
+  var weatherList = [];
 
-  $scope.selectedItem = '';
+  this.getCities = function(){
+    return cities;
+  } 
 
-  $scope.weatherList = [];
-
-  $scope.changeSelectedValue = function(newValue){
-    $scope.selectedItem = newValue;
+  this.addWeatherForCity = function(cityTitle) {
+    $http.get(`http://api.apixu.com/v1/current.json?key=6cbe15feda954dcc8cf91121192202&q=${cityTitle}`)
+          .then(function(response){
+            weatherList.push({title: cityTitle, temp: response.data.current.temp_c});
+          });
   }
 
-  $scope.addInfo = function(){
-    $http.get(`http://api.apixu.com/v1/current.json?key=6cbe15feda954dcc8cf91121192202&q=${$scope.selectedItem}`)
-      .then(function(response){
-        $scope.weatherList.push({title: response.data.location.name, temp: response.data.current.temp_c});
-      });
+  this.getWeatherList = function() {
+    return weatherList;
   }
 
-  $scope.delete = function(title){
-    $scope.weatherList = $scope.weatherList.filter(item => item.title !== title)
+  this.deleteWeatherInfo = function(cityTitle) {
+    debugger
+    weatherList = weatherList.filter(item => item.title !== cityTitle);
   }
-}]);
+
+});
