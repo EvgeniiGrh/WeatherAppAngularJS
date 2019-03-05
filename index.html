@@ -8,17 +8,19 @@
   </head>
   <body>
 
-    <div>
+    <common-container>
 
-      <custom-selector></custom-selector>
+      <custom-selector weather-list="weatherList"></custom-selector>
 
-      <weather-cards></weather-cards>
+      <cards-list weather-list="weatherList"></cards-list>
 
-    </div>
+    </common-container>
 
     <script src='js/app.module.js'></script>
-    <script src='js/cityDataService.js'></script>
+    <script src='js/services//cities.service.js'></script>
+    <script src='js/services/weatherData.service.js'></script>
+    <script src='js/commonContainer.directive.js'></script>
     <script src='js/customSelector.directive.js'></script>
-    <script src='js/weatherCards.directive.js'></script>
+    <script src='js/cardsList.directive.js'></script>
   </body>
 </html>

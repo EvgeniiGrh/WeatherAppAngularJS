@@ -1,14 +1,21 @@
 angular.module('weatherApp')
-.directive('customSelector', function (cityDataService) {
-  return {
-    restrict: 'AE',
-    scope: {
-    },
-    templateUrl: '../templates/customSelector.template.html',
-    link: function(scope){
-      scope.citiesArray = cityDataService.getCities();
+  .directive('customSelector', function (weatherData, CITIES) {
+    return {
+      restrict: 'AE',
+      scope: {
+        weatherList: '=',
+      },
+      templateUrl: '../templates/customSelector.template.html',
+      link: function (scope) {
+        scope.citiesArray = CITIES;
 
-      scope.addInfo = cityDataService.addWeatherForCity;
-    }, 
-  };
-});
+        scope.addInfo = function (title) {
+          var promiseResponse = weatherData.getWeatherFromServer(title);
+
+          promiseResponse.then((data) => {
+            scope.weatherList.push(data);
+          })
+        };
+      },
+    };
+  });
