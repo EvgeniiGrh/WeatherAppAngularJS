@@ -9,9 +9,12 @@ angular.module('weatherApp')
 
       scope.weatherList = cityDataService.getWeatherList(); 
 
+      // debugger
       // scope.$watch('weatherList', function(newValue, oldValue) {
-      //   console.log('newValue', newValue);
-      //   console.log('oldValue', oldValue);
+      //   debugger
+      //   if (newValue.length !== oldValue.length) {
+      //     scope.weatherList = newValue;
+      //   }
       // });
 
       scope.delete = function(title){
@@ -19,7 +22,7 @@ angular.module('weatherApp')
         // scope.$apply(function(title){
         debugger
           cityDataService.deleteWeatherInfo(title);
-          scope.weatherList = cityDataService.getWeatherList(); 
+          // scope.weatherList = cityDataService.getWeatherList(); 
         // });
       };
     }, 

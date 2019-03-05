@@ -1,5 +1,5 @@
 <select ng-model="selectedItem" ng-change="changeOption(selectedItem)">
-  <option ng-repeat="city in citiesArray">{{city}}</option>
+  <option ng-repeat="city in citiesArray track by $index">{{city}}</option>
 </select>
 
 <button ng-click="addInfo(selectedItem)">ADD</button>

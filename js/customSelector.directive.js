@@ -9,7 +9,6 @@ angular.module('weatherApp')
       scope.citiesArray = cityDataService.getCities();
 
       scope.addInfo = cityDataService.addWeatherForCity;
-      
     }, 
   };
 });

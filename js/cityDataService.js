@@ -19,8 +19,6 @@ angular.module('weatherApp')
   }
 
   this.deleteWeatherInfo = function(cityTitle) {
-    debugger
     weatherList = weatherList.filter(item => item.title !== cityTitle);
   }
-
 });
