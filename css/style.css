@@ -7,3 +7,11 @@
   list-style-type: none;
   text-align: center;
 }
+
+ul:last-child::after{
+  content: '.';
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+}

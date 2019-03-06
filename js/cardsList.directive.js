@@ -1,14 +1,23 @@
 angular.module('weatherApp')
-  .directive('cardsList', function () {
+  .directive('cardsList', function ($rootScope) {
     return {
       restrict: 'AE',
       scope: {
-        weatherList: '=',
       },
       templateUrl: '../templates/cardsList.template.html',
       link: function (scope) {
+        scope.$on('updateWeatherList', function(event, data){
+          scope.weatherList = data;
+        });
+
+        var rootScopeListener = $rootScope.$on('updateWeatherListUsingRootScope', function(event, data){
+          scope.weatherList = data;
+        });
+
+        $scope.$on('$destroy', rootScopeListener);
+
         scope.delete = function (cityTitle) {
-          scope.weatherList = scope.weatherList.filter(item => item.title !== cityTitle);
+          $rootScope.$broadcast('deleteComponent', cityTitle);
         };
       },
     };
